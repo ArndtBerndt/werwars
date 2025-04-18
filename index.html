@@ -256,9 +256,9 @@
             const plotPrompt = `
 Erstelle einen Kriminalfall für ein Text-Detektivspiel auf Deutsch. Der Spieler ist ein Kommissar.
 Die vier Verdächtigen sind IMMER die folgenden Personen mit diesen Grundeigenschaften:
-1.  Kristi Nita: Albaner, spricht mit Akzent, Romantiker, hasst Sport.
+1.  Kristi Nita: Albaner, spricht mit Akzent, Romantiker, er hat eine Freundin Fjona, hasst Sport.
 2.  Billy Herrmann: Ölt sich gerne ein, um seinen Körper zur Schau zu stellen, gläubiger Christ, hat seit neustem ein Motorrad.
-3.  Arndt Strauß: Locker, schön und entspannt, aber auch sehr anziehend/flirty ("horny").
+3.  Arndt Strauß: Locker, schön und entspannt, aber auch sehr anziehend/flirty ("horny"), klug, faul, süchtig.
 4.  Moritz Gubitzer: Hat einen großen, adrigen Bizeps, ist viel beschäftigt und unterwegs, hat selten Zeit für Freunde.
 
 Gib die Ausgabe NUR als JSON-Objekt zurück, ohne umschließende Markdown-Formatierung (wie \`\`\`json).
@@ -280,13 +280,13 @@ JSON-Struktur:
       "beschreibung": "Kurze Beschreibung des Opfers und seiner Beziehung zu den Verdächtigen."
   },
   "boss": {
-      "name": "Chef Inspektor Müller",
+      "name": "Chef Inspektor Tschiggerillo",
       "emoji": "👨‍✈️",
       "briefing": "Eine kurze Anweisung des Chefs an den Spieler zu Beginn des Spiels."
   },
   "polizist": {
-      "id": "polizist_meier",
-      "name": "Polizist Meier",
+      "id": "polizist_chris",
+      "name": "Polizist Chris",
       "emoji": "👮‍♂️",
       "rolle": "Ein hilfsbereiter Polizist am Tatort. Kennt den Täter nicht."
   },
