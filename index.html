@@ -256,16 +256,16 @@
             const plotPrompt = `
 Erstelle einen Kriminalfall für ein Text-Detektivspiel auf Deutsch. Der Spieler ist ein Kommissar.
 Die vier Verdächtigen sind IMMER die folgenden Personen mit diesen Grundeigenschaften:
-1.  Kristi Nita: Albaner, spricht mit Akzent, Romantiker, er hat eine Freundin Fjona, hasst Sport.
+1.  Kristi Nita: Albaner, spricht mit Akzent, Romantiker, hasst Sport.
 2.  Billy Herrmann: Ölt sich gerne ein, um seinen Körper zur Schau zu stellen, gläubiger Christ, hat seit neustem ein Motorrad.
-3.  Arndt Strauß: Locker, schön und entspannt, aber auch sehr anziehend/flirty ("horny"), klug, faul, süchtig.
+3.  Arndt Strauß: Locker, schön und entspannt, aber auch sehr anziehend/flirty ("horny").
 4.  Moritz Gubitzer: Hat einen großen, adrigen Bizeps, ist viel beschäftigt und unterwegs, hat selten Zeit für Freunde.
 
 Gib die Ausgabe NUR als JSON-Objekt zurück, ohne umschließende Markdown-Formatierung (wie \`\`\`json).
 
 Wichtige Anweisungen für den Fall:
 1.  **Beziehungen:** Die vier Verdächtigen sollen sich untereinander unterschiedlich gut kennen (manche gut, manche kaum). Beschreibe diese Beziehungen kurz in ihrer 'rolle' oder ihrem 'wissen', basierend auf den festgelegten Charakteren.
-2.  **Hinweise:** Es soll sowohl 'entscheidende_hinweise' geben, die direkt oder indirekt auf den Täter deuten, als auch 1-2 'falsche_faehrten', die plausibel auf einen unschuldigen Verdächtigen hindeuten.
+2.  **Hinweise:** Es soll sowohl 'entscheidende_hinweise' geben, die direkt oder indirekt auf den Täter deuten, als auch 10-20 'neutrale Fakten', die mehr oder weniger relevant für den Fall sein können und auch auf Unschuldige Verdächtige hinweisen können.
 3.  **Realismus:** Der gesamte Fall, einschließlich der Beziehungen, Motive, Alibis und Hinweise (echte und falsche), sollte realistisch und nachvollziehbar sein und zu den festgelegten Charakteren passen.
 4.  **Täter:** Wähle EINEN der vier festgelegten Verdächtigen als Täter aus. Seine Motivation und die Tat sollten zu seinem Charakterprofil passen. Er/Sie sollte versuchen, die Schuld von sich zu weisen.
 5.  **Polizist:** Der Polizist kennt den Täter nicht und gibt nur allgemeine, bereits bekannte Informationen weiter.
@@ -276,11 +276,11 @@ JSON-Struktur:
   "tatort": "Der spezifische Ort des Geschehens(z.B. Garching, TUM-Stammgelände, Bibliothek, Englischer Garten, Bar, oder andere Orte).",
   "zeitpunkt": "Der ungefähre Zeitpunkt des Geschehens.",
   "opfer": {
-      "name": "Name des Opfers",
+      "name": "Name des Opfers(bitte ein kreativer Name)",
       "beschreibung": "Kurze Beschreibung des Opfers und seiner Beziehung zu den Verdächtigen."
   },
   "boss": {
-      "name": "Chef Inspektor Tschiggerillo",
+     "name": "Chef Inspektor Tschiggerillo",
       "emoji": "👨‍✈️",
       "briefing": "Eine kurze Anweisung des Chefs an den Spieler zu Beginn des Spiels."
   },
@@ -333,8 +333,8 @@ JSON-Struktur:
     "Echter Hinweis 1...",
     "Echter Hinweis 2..."
   ],
-  "falsche_faehrten": [ // 1-2 Hinweise, die plausibel auf einen UNSCHULDIGEN Verdächtigen deuten
-      "Irreführender Hinweis 1 (deutet auf Unschuldigen X)..."
+  "neutrale_fakten": [ // 10-20 beschreibende Elemente, die zu dem Fall gehören aber nicht unbedingt zur Aufklärung beitragen können. Sie können auch auf UNSCHULDIGE Verdächtige deuten
+      "Fakt 1 (deutet auf X)..."
   ],
   "loesung_erklaerung": "Eine kurze Erklärung, warum die Person der Täter ist und wie die echten Hinweise zusammenpassen."
 }
@@ -366,7 +366,7 @@ Stelle sicher, dass das JSON vollständig und korrekt formatiert ist.
                                 gameData.taeter_id && validIds.includes(gameData.taeter_id) && // Check if taeter_id is one of the fixed ones
                                 gameData.boss && gameData.polizist &&
                                 gameData.entscheidende_hinweise && Array.isArray(gameData.entscheidende_hinweise) &&
-                                gameData.falsche_faehrten && Array.isArray(gameData.falsche_faehrten) &&
+                                gameData.neutrale_fakten && Array.isArray(gameData.neutrale_fakten) &&
                                 gameData.verdaechtige.every(v => v.name && v.emoji && v.rolle && v.motiv && v.alibi && v.wissen)
                                )
                             {
@@ -584,7 +584,7 @@ Dein generiertes spezifisches Wissen in diesem Fall: ${character.wissen || 'Nich
             // --- ADD ACCENT INSTRUCTION FOR KRISTI ---
             let finalInstructions = baseInstructions;
             if (selectedCharacterId === 'kristi') {
-                finalInstructions = `**WICHTIG: Antworte IMMER mit einem albanischen Akzent also leichte Rechtschreibfehler, Grammatikfehler(falsche Artikel), Satzbau, typische Worte.** ${baseInstructions}`;
+                finalInstructions = `**WICHTIG: Antworte IMMER mit einem albanischen Akzent also Grammatikfehler, Satzbau, typische Worte.** ${baseInstructions}`;
             }
             // --- END OF ACCENT INSTRUCTION ---
 
