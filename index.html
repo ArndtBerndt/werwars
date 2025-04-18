@@ -545,7 +545,7 @@ Stelle sicher, dass das JSON vollständig und korrekt formatiert ist.
             // --- Construct the prompt for Gemini ---
              const allClues = [
                 ...(gameData.entscheidende_hinweise || []),
-                ...(gameData.falsche_faehrten || [])
+                ...(gameData.neutrale_fakten || [])
              ];
 
             let plotSummary = `
@@ -555,7 +555,7 @@ Zeitpunkt: ${gameData.zeitpunkt}
 ${gameData.opfer ? `Opfer: ${gameData.opfer.name} (${gameData.opfer.beschreibung})` : ''}
 Verdächtige: ${gameData.verdaechtige.map(v => `${v.name} (${v.rolle})`).join(', ')}
 Polizist vor Ort: ${gameData.polizist.name}
-Bekannte Hinweise (Mischung aus echten und falschen Fährten): ${allClues.join('; ')}
+Bekannte Hinweise (Mischung aus echten und falschen Fährten und neutralen Fakten): ${allClues.join('; ')}
 `;
             // Include fixed character traits in the info passed to AI
             let characterInfo = `
